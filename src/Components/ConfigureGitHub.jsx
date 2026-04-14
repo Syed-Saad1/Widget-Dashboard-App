@@ -2,17 +2,20 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { useFormik } from "formik";
 import { GitProfileSchema } from "../yupSchema/FormValidation";
+import { getgithubProfile } from "../constant/apis";
 
 const initialValues = {
   username: "",
 };
 
 export default function ConfigureGitHub({ onClose }) {
+
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: GitProfileSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log("VAL:", values);
+      await getgithubProfile(values.username)
       action.resetForm();
     },
   });

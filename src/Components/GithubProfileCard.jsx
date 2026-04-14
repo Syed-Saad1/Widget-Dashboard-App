@@ -3,11 +3,11 @@ import SettingIcon from "../assets/setting.png";
 import RefreshIcon from "../assets/refreshicon.png";
 import DeleteIcon from "../assets/bin.png";
 import MyPic from "../assets/Mypics.jpg";
-export default function () {
+
+export default function ({ data }) {
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/40 ">
-        <div className="h-55.75 w-107.25 bg-[#ffffff] shadow-2xl rounded-3xl px-3 py-3">
+        <div className="h-55.75 w-107.25 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4">
           <div className="flex justify-between items-center px-4 py-2">
             <div>
               <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
@@ -37,33 +37,32 @@ export default function () {
           </div>
           <hr className="text-[#DCD1D5] pt-3" />
           <div className="flex justify-baseline gap-2 items-center mt-2">
-            <img className="h-12 w-12 rounded-full" src={MyPic} alt="" />
+            <img className="h-12 w-12 rounded-full" src={data?.avatar_url} alt="" />
             <p className="text-[14px] font-[Inter,Poppins,sans-serif]">
-              Syed-Saad1
+              {data?.name}
             </p>
           </div>
           <div className="flex gap-6 mt-3">
             <div>
-              <p className="font-[JetBrains Mono,monospace] text-[24px]">46</p>
+              <p className="font-[JetBrains Mono,monospace] text-[24px]">{data?.public_repos}</p>
               <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
                 REPOS
               </p>
             </div>
             <div>
-              <p className="font-[JetBrains Mono,monospace] text-[24px]">1</p>
+              <p className="font-[JetBrains Mono,monospace] text-[24px]">{data?.followers}</p>
               <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
                 FOLLOWERS
               </p>
             </div>
             <div>
-              <p className="font-[JetBrains Mono,monospace] text-[24px]">0</p>
+              <p className="font-[JetBrains Mono,monospace] text-[24px]">{data?.following}</p>
               <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
                 FOLLOWING
               </p>
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
