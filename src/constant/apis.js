@@ -1,23 +1,29 @@
 import axios from "axios";
 
-export const STORAGE_KEY = 'widgets'
+export const STORAGE_KEY = "widgets";
 
 export const getgithubProfile = async (username) => {
   const response = await axios.get(`https://api.github.com/users/${username}`);
   if (!response.data) return;
   // get all saved widgets from local storage
-  const widgets = localStorage.getItem(STORAGE_KEY)
-  // parse (string to array) widgets 
-  const parsedWidgets = JSON.parse(widgets ?? '[]')
+  const widgets = localStorage.getItem(STORAGE_KEY);
+  // parse (string to array) widgets
+  const parsedWidgets = JSON.parse(widgets ?? "[]");
   // set widgets to local storage
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...parsedWidgets, { id: 'github-profile', data: response.data }]))
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([
+      ...parsedWidgets,
+      { id: "github-profile", data: response.data },
+    ]),
+  );
 };
 
 export const GetgithubRepos = async (username) => {
   const response = await axios.get(
     `https://api.github.com/users/${username}/repos`,
   );
-
+  if (!response.data) return;
   // console.log("RES:", response);
 };
 

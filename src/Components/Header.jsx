@@ -36,7 +36,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <div className="cursor-pointer  bg-gray-100 flex justify-center text-sm font-medium  rounded-[10px] transition-all duration-200 hover:text-white  hover:bg-[#38B1A1] text-black items-center gap-2 w-25 h-10">
               <img className="h-3 w-3 " src={refreshIcon} alt="" />
-              <button >Refresh</button>
+              <button>Refresh</button>
             </div>
 
             <div
@@ -99,7 +99,6 @@ export default function Header() {
       {hackerNews && (
         <ConfigureHakerNewsActivity onClose={() => setHackerNews(false)} />
       )}
-      
     </>
   );
 }
