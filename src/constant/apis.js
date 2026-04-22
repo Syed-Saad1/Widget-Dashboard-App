@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const STORAGE_KEY = "widgets";
 
-export const getgithubProfile = async (username) => {
+export const getGithubProfile = async (username) => {
   const response = await axios.get(`https://api.github.com/users/${username}`);
   if (!response.data) return;
   // get all saved widgets from local storage
@@ -23,16 +23,41 @@ export const GetgithubRepos = async (username) => {
   const response = await axios.get(
     `https://api.github.com/users/${username}/repos`,
   );
+  console.log(response);
+
   if (!response.data) return;
+  const widgets = localStorage.getItem(STORAGE_KEY);
+  // parse (string to array) widgets
+  const parsedWidgets = JSON.parse(widgets ?? "[]");
+  // set widgets to local storage
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([
+      ...parsedWidgets,
+      { id: "ReposCards", data: response.data },
+    ]),
+  );
   // console.log("RES:", response);
 };
 
 export const GetdevTo = async (username) => {
   const response = await axios.get(
-    `https://dev.to/api/articles?username={username}`,
+    `https://dev.to/api/articles?username=${username}`,
   );
+  console.log(response);
 
-  // console.log("RES:", response);
+  if (!response.data) return;
+  const widgets = localStorage.getItem(STORAGE_KEY);
+  // parse (string to array) widgets
+  const parsedWidgets = JSON.parse(widgets ?? "[]");
+  // set widgets to local storage
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([
+      ...parsedWidgets,
+      { id: "devtoarticles", data: response.data },
+    ]),
+  );
 };
 
 export const GetstackFlow = async (id) => {
@@ -40,7 +65,20 @@ export const GetstackFlow = async (id) => {
     `https://api.stackexchange.com/2.3/users/${id}?site=stackoverflow`,
   );
 
-  // console.log("RES:", response);
+  console.log(response);
+
+  if (!response.data) return;
+  const widgets = localStorage.getItem(STORAGE_KEY);
+  // parse (string to array) widgets
+  const parsedWidgets = JSON.parse(widgets ?? "[]");
+  // set widgets to local storage
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([
+      ...parsedWidgets,
+      { id: "stackoverflowsummary", data: response.data },
+    ]),
+  );
 };
 
 export const GethackerNews = async (username) => {

@@ -2,6 +2,7 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { StackOverFlow } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
+import { GetstackFlow } from "../constant/apis";
 const initialValues = {
   userID: "",
 };
@@ -9,8 +10,9 @@ export default function ConfigureStackOverflowSummury({ onClose }) {
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: StackOverFlow,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log("VAL:", values);
+      await GetstackFlow(values.username);
       action.resetForm();
     },
   });

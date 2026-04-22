@@ -48,15 +48,15 @@ function App() {
           {widgets.map((item) => {
             switch (item.id) {
               case "github-profile":
-                return <GithubProfil eCard key={item.id} data={item.data} />;
+                return <GithubProfileCard key={item.id} data={item.data} />;
 
-              case "github-repos":
+              case "ReposCards":
                 return <GithubRepoesCard key={item.id} data={item.data} />;
 
-              case "devto-articles":
+              case "devtoarticles":
                 return <DevtoArticlesCard key={item.id} data={item.data} />;
 
-              case "stackoverflow-summary":
+              case "stackoverflowsummary":
                 return <StackflowCard key={item.id} data={item.data} />;
 
               case "hackernews-activity":

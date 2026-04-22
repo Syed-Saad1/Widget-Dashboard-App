@@ -7,8 +7,8 @@ import WinIcon from "../assets/win.png";
 export default function () {
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/40 ">
-        <div className="h-65 w-137.5 bg-[#ffffff] shadow-2xl rounded-3xl px-3 py-3">
+      <div className="mt-4">
+        <div className="h-auto w-137.5 bg-[#ffffff]  mx-4 my-10 rounded-3xl px-4 pb-4">
           <div className="flex justify-between items-center px-4 py-2">
             <div>
               <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">

@@ -2,6 +2,7 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { DevToSchema } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
+import { GetdevTo } from "../constant/apis";
 const initialValues = {
   username: "",
 };
@@ -9,8 +10,9 @@ export default function ConfigureDevToArticles({ onClose }) {
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: DevToSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log("VAL:", values);
+      await GetdevTo(values.username);
       action.resetForm();
     },
   });
