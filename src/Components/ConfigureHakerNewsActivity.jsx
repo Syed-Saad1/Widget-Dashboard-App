@@ -2,6 +2,7 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { HackerNews } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
+import { GethackerNews } from "../constant/apis";
 const initialValues = {
   username: "",
 };
@@ -9,8 +10,9 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: HackerNews,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log("VAL:", values);
+      await GethackerNews(values.username);
       action.resetForm();
     },
   });

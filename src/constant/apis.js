@@ -5,11 +5,8 @@ export const STORAGE_KEY = "widgets";
 export const getGithubProfile = async (username) => {
   const response = await axios.get(`https://api.github.com/users/${username}`);
   if (!response.data) return;
-  // get all saved widgets from local storage
   const widgets = localStorage.getItem(STORAGE_KEY);
-  // parse (string to array) widgets
   const parsedWidgets = JSON.parse(widgets ?? "[]");
-  // set widgets to local storage
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify([
@@ -24,12 +21,9 @@ export const GetgithubRepos = async (username) => {
     `https://api.github.com/users/${username}/repos`,
   );
   console.log(response);
-
   if (!response.data) return;
   const widgets = localStorage.getItem(STORAGE_KEY);
-  // parse (string to array) widgets
   const parsedWidgets = JSON.parse(widgets ?? "[]");
-  // set widgets to local storage
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify([
@@ -37,7 +31,6 @@ export const GetgithubRepos = async (username) => {
       { id: "ReposCards", data: response.data },
     ]),
   );
-  // console.log("RES:", response);
 };
 
 export const GetdevTo = async (username) => {
@@ -45,12 +38,9 @@ export const GetdevTo = async (username) => {
     `https://dev.to/api/articles?username=${username}`,
   );
   console.log(response);
-
   if (!response.data) return;
   const widgets = localStorage.getItem(STORAGE_KEY);
-  // parse (string to array) widgets
   const parsedWidgets = JSON.parse(widgets ?? "[]");
-  // set widgets to local storage
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify([
@@ -60,18 +50,14 @@ export const GetdevTo = async (username) => {
   );
 };
 
-export const GetstackFlow = async (id) => {
+export const GetstackFlow = async (userID) => {
   const response = await axios.get(
-    `https://api.stackexchange.com/2.3/users/${id}?site=stackoverflow`,
+    `https://api.stackexchange.com/2.3/users/${userID}?site=stackoverflow`,
   );
-
   console.log(response);
-
   if (!response.data) return;
   const widgets = localStorage.getItem(STORAGE_KEY);
-  // parse (string to array) widgets
   const parsedWidgets = JSON.parse(widgets ?? "[]");
-  // set widgets to local storage
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify([
@@ -83,8 +69,17 @@ export const GetstackFlow = async (id) => {
 
 export const GethackerNews = async (username) => {
   const response = await axios.get(
-    ` https://hacker-news.firebaseio.com/v0/user/{id}.json`,
+    `https://hacker-news.firebaseio.com/v0/user/${username}.json`,
   );
-
-  // console.log("RES:", response);
+  console.log(response);
+  if (!response.data) return;
+  const widgets = localStorage.getItem(STORAGE_KEY);
+  const parsedWidgets = JSON.parse(widgets ?? "[]");
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([
+      ...parsedWidgets,
+      { id: "hackernews", data: response.data },
+    ]),
+  );
 };

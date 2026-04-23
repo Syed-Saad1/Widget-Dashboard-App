@@ -59,7 +59,7 @@ function App() {
               case "stackoverflowsummary":
                 return <StackflowCard key={item.id} data={item.data} />;
 
-              case "hackernews-activity":
+              case "hackernews":
                 return <HackerNewsCard key={item.id} data={item.data} />;
 
               default:
