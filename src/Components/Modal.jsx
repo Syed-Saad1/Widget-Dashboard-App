@@ -12,7 +12,7 @@ export default function Modal({
     <>
       <div
         onClick={onClose}
-        className="fixed top-0 inset-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black-10"
+        className="fixed top-0 inset-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/40"
       >
         <div className="h-116 w-120.25 bg-[#ffffff] shadow-2xl rounded-2xl px-4 py-4">
           <div

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import refreshIcon from "../assets/refreshicon.png";
 import AddIcon from "../assets/add.png";
 import WidgetIcon from "../assets/Widget-icon.png";
-import MyModal from "./Modal.jsx";
+import DataSourceModal from "./Modal.jsx";
 import ConfigureGitHub from "./ConfigureGitHub";
 import ConfigureGitHubRepos from "./ConfigureGitHubRepos.jsx";
 import ConfigureDevToArticles from "./ConfigureDev.ToArticles.jsx";
@@ -21,7 +21,7 @@ export default function Header() {
   // GetgithubRepos("Syed-Saad1");
   // GetdevTo("ddebajyati");
   // GetstackFlow(1688441);
-  GethackerNews("tptacek");
+  // GethackerNews("tptacek");
   return (
     <>
       {/* Navbar */}
@@ -50,7 +50,7 @@ export default function Header() {
         </div>
       </div>
       {isOpen && (
-        <MyModal
+        <DataSourceModal
           onClose={() => setIsOpen(false)}
           onGithub={() => {
             setIsOpen(false);
@@ -83,7 +83,7 @@ export default function Header() {
             setHackerNews(true);
           }}
         />
-      )}{" "}
+      )}
       {githubOpen && <ConfigureGitHub onClose={() => setGithubOpen(false)} />}
       {githubReposOpen && (
         <ConfigureGitHubRepos onClose={() => setGithubReposOpen(false)} />

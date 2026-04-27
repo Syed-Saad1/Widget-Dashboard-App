@@ -12,7 +12,7 @@ import GithubRepoesCard from "./Components/GithubRepoesCard.jsx";
 import DevtoArticlesCard from "./Components/DevtoArticlesCard.jsx";
 import StackflowCard from "./Components/StackflowCard.jsx";
 import HackerNewsCard from "./Components/HackerNewsCard.jsx";
-import { STORAGE_KEY } from "./constant/apis.js";
+import { handleDelete, STORAGE_KEY } from "./constant/apis.js";
 import WidgetIcon from "./assets/Widget-icon.png";
 
 function App() {
@@ -21,6 +21,10 @@ function App() {
   const isEmpty = widgets.length === 0;
 
   console.log("widgets:", widgets);
+
+  const onDelete = (index) => {
+    handleDelete(index);
+  };
 
   return (
     <>
@@ -45,22 +49,52 @@ function App() {
         </div>
       ) : (
         <div className="p-4 flex flex-wrap gap-5 bg-gray-50 min-h-[calc(100vh-64px)]">
-          {widgets.map((item) => {
+          {widgets.map((item, index) => {
             switch (item.id) {
               case "github-profile":
-                return <GithubProfileCard key={item.id} data={item.data} />;
+                return (
+                  <GithubProfileCard
+                    key={item.id}
+                    data={item.data}
+                    onDelete={() => onDelete(index)}
+                  />
+                );
 
               case "ReposCards":
-                return <GithubRepoesCard key={item.id} data={item.data} />;
+                return (
+                  <GithubRepoesCard
+                    key={item.id}
+                    data={item.data}
+                    onDelete={() => onDelete(index)}
+                  />
+                );
 
               case "devtoarticles":
-                return <DevtoArticlesCard key={item.id} data={item.data} />;
+                return (
+                  <DevtoArticlesCard
+                    key={item.id}
+                    data={item.data}
+                    onDelete={() => onDelete(index)}
+                  />
+                );
 
               case "stackoverflowsummary":
-                return <StackflowCard key={item.id} data={item.data} />;
+                return (
+                  <StackflowCard
+                    key={item.id}
+                    data={item.data}
+                    onDelete={() => onDelete(index)}
+                  />
+                );
 
               case "hackernews":
-                return <HackerNewsCard key={item.id} data={item.data} />;
+                return (
+                  <HackerNewsCard
+                    key={item.id}
+                    data={item.data}
+                    onDelete={() => onDelete(index)}
+                  />
+                );
 
               default:
                 return null;

@@ -14,6 +14,7 @@ export default function ConfigureDevToArticles({ onClose }) {
       console.log("VAL:", values);
       await GetdevTo(values.username);
       action.resetForm();
+      onClose();
     },
   });
 

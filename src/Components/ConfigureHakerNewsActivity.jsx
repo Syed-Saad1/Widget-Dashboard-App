@@ -12,12 +12,12 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
     validationSchema: HackerNews,
     onSubmit: async (values, action) => {
       console.log("VAL:", values);
-      await GethackerNews(values.username);
+      await GethackerNews(values?.username);
       action.resetForm();
+      onClose();
     },
   });
 
-  console.log("VAL:", errors);
   return (
     <>
       <div
@@ -50,7 +50,7 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
                 type="text"
                 placeholder="Enter Your HackerNews Username"
                 name="username"
-                value={values.username}
+                value={values?.username}
                 onChange={handleChange}
                 id=""
               />

@@ -15,6 +15,7 @@ export default function ConfigureGitHubRepos({ onClose }) {
       console.log("VAL:", values);
       await GetgithubRepos(values.username);
       action.resetForm();
+      onClose();
     },
   });
   console.log("Val", errors);

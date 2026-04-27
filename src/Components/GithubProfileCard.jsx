@@ -1,13 +1,14 @@
 import React from "react";
-import SettingIcon from "../assets/setting.png";
-import RefreshIcon from "../assets/refreshicon.png";
-import DeleteIcon from "../assets/bin.png";
+import { CiSettings } from "react-icons/ci";
+import { LuRefreshCw } from "react-icons/lu";
+import { RiDeleteBinLine } from "react-icons/ri";
 import MyPic from "../assets/Mypics.jpg";
 
-export default function ({ data }) {
+export default function ({ data, onDelete }) {
   return (
     <>
-      <div className="h-55.75 w-107.25 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4">
+      <div className="  bg-black/40 " />
+      <div className="h-55.75 w-107.25 bg-[#ffffff]  rounded-3xl px-4">
         <div className="flex justify-between items-center px-4 py-2">
           <div>
             <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
@@ -18,21 +19,18 @@ export default function ({ data }) {
             </h2>
           </div>
           <div className="flex gap-3">
-            <img
-              className="h-6 w-6 hover:bg-[#38B1A1] p-1 rounded-md"
-              src={RefreshIcon}
-              alt=""
-            />
-            <img
-              className="h-6 w-6 hover:bg-[#38B1A1] p-1 rounded-md"
-              src={SettingIcon}
-              alt=""
-            />
-            <img
-              className="h-6 w-6 hover:bg-[#38B1A1] p-1 rounded-md"
-              src={DeleteIcon}
-              alt=""
-            />
+            <p className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md">
+              <LuRefreshCw className="h-4.5" />
+            </p>
+            <p className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md">
+              <CiSettings />
+            </p>
+            <button
+              onClick={onDelete}
+              className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
+            >
+              <RiDeleteBinLine className="h-4.5" />
+            </button>
           </div>
         </div>
         <hr className="text-[#DCD1D5] pt-3" />
@@ -46,9 +44,9 @@ export default function ({ data }) {
             {data?.name}
           </p>
         </div>
-        <div className="flex gap-6 mt-3">
+        <div className="flex gap-6 mt-5">
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px]">
+            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
               {data?.public_repos}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
@@ -56,7 +54,7 @@ export default function ({ data }) {
             </p>
           </div>
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px]">
+            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
               {data?.followers}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
@@ -64,7 +62,7 @@ export default function ({ data }) {
             </p>
           </div>
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px]">
+            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
               {data?.following}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">

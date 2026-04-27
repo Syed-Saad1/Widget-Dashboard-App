@@ -14,8 +14,11 @@ export default function ConfigureGitHub({ onClose }) {
     validationSchema: GitProfileSchema,
     onSubmit: async (values, action) => {
       console.log("VAL:", values);
-      await getGithubProfile(values.username);
+
+      const response = await getGithubProfile(values.username);
+
       action.resetForm();
+      onClose();
     },
   });
 

@@ -14,6 +14,7 @@ export default function ConfigureStackOverflowSummury({ onClose }) {
       console.log("VAL:", values);
       await GetstackFlow(values.userID);
       action.resetForm();
+      onClose();
     },
   });
 
