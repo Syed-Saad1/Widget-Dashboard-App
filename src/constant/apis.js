@@ -23,16 +23,14 @@ export const GetgithubRepos = async (username) => {
   const response = await axios.get(
     `https://api.github.com/users/${username}/repos`,
   );
-  console.log(response);
   if (!response.data) return;
+
+  const RepoDats = response.data.slice(0, 5) || [];
   const widgets = localStorage.getItem(STORAGE_KEY);
   const parsedWidgets = JSON.parse(widgets ?? "[]");
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify([
-      ...parsedWidgets,
-      { id: "ReposCards", data: response.data },
-    ]),
+    JSON.stringify([...parsedWidgets, { id: "ReposCards", data: RepoDats }]),
   );
 };
 
@@ -42,14 +40,13 @@ export const GetdevTo = async (username) => {
   );
   console.log(response);
   if (!response.data) return;
+  const devDats = response.data.slice(0, 5) || [];
+
   const widgets = localStorage.getItem(STORAGE_KEY);
   const parsedWidgets = JSON.parse(widgets ?? "[]");
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify([
-      ...parsedWidgets,
-      { id: "devtoarticles", data: response.data },
-    ]),
+    JSON.stringify([...parsedWidgets, { id: "devtoarticles", data: devDats }]),
   );
 };
 

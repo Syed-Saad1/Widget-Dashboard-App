@@ -1,5 +1,7 @@
 import React from "react";
 import CloseIcon from "../assets/close.png";
+import { RxCross2 } from "react-icons/rx";
+
 export default function Modal({
   onClose,
   onGithub,
@@ -20,12 +22,10 @@ export default function Modal({
             className="flex justify-between items-center m-2"
           >
             <h1 className="text-[20px] font-medium text-black">Add Widget</h1>
-            <img
-              onClick={onClose}
-              className="h-4 w-4 cursor-pointer"
-              src={CloseIcon}
-              alt=""
-            />
+            <img onClick={onClose} className="h-4 w-4 cursor-pointer" alt="" />
+            <button onClick={onClose} className=" cursor-pointer">
+              <RxCross2 size={24} />
+            </button>
           </div>
 
           <div>

@@ -12,12 +12,12 @@ export default function ({ data, onDelete }) {
   return (
     <>
       <div className="mt-4  bg-black/40 " />
-      <div className="h-auto w-125 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4 pb-4">
-        <div className="flex justify-between items-center px-4 py-2">
+      <div className="h-fit w-125 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4 ">
+        <div className="flex justify-between items-center p-3">
           <div>
-            <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
-              GITHUB <span className="px-1.5">.</span>
-              <p className="text-[14px] font-semibold text-black font-[Inter,Poppins,sans-serif]">
+            <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[#38B1A1] text-[12px] font-semibold ">
+              GITHUB <span className="px-1.5 font-bold">.</span>
+              <p className="text-[14px] font-semibold text-black">
                 GitHub Repos
               </p>
             </h2>
