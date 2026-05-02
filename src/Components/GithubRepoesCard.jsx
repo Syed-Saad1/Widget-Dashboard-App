@@ -4,8 +4,11 @@ import { LuRefreshCw } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import StarIcon from "../assets/star.png";
 import ForkIcon from "../assets/code-fork.png";
+import { useWidgetContext } from "../hooks/usewidgetContext";
 
-export default function ({ data, onDelete }) {
+export default function ({ data, index }) {
+  const { handleDelete } = useWidgetContext();
+
   const handleClick = (repo) => {
     window.open(repo.html_url, "_blank");
   };
@@ -30,7 +33,7 @@ export default function ({ data, onDelete }) {
               <CiSettings />
             </p>
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(index)}
               className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
             >
               <RiDeleteBinLine className="h-4.5" />

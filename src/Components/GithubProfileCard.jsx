@@ -3,8 +3,10 @@ import { CiSettings } from "react-icons/ci";
 import { LuRefreshCw } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import MyPic from "../assets/Mypics.jpg";
+import { useWidgetContext } from "../hooks/usewidgetContext";
 
-export default function ({ data, onDelete }) {
+export default function ({ data, index }) {
+  const { handleDelete } = useWidgetContext();
   return (
     <>
       <div className="  bg-black/40 " />
@@ -26,7 +28,7 @@ export default function ({ data, onDelete }) {
               <CiSettings />
             </p>
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(index)}
               className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
             >
               <RiDeleteBinLine className="h-4.5" />

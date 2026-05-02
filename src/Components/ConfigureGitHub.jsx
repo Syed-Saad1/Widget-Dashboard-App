@@ -1,28 +1,26 @@
 import React from "react";
+import { RxCross2 } from "react-icons/rx";
+
 import CloseIcon from "../assets/close.png";
 import { useFormik } from "formik";
 import { GitProfileSchema } from "../yupSchema/FormValidation";
-import { getGithubProfile } from "../constant/apis";
-
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
 const initialValues = {
   username: "",
 };
 
 export default function ConfigureGitHub({ onClose }) {
+  const { getGithubProfile } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: GitProfileSchema,
     onSubmit: async (values, action) => {
-      console.log("VAL:", values);
-
       const response = await getGithubProfile(values.username);
 
       action.resetForm();
       onClose();
     },
   });
-
-  console.log("VAL:", errors);
   return (
     <>
       <div
@@ -38,12 +36,9 @@ export default function ConfigureGitHub({ onClose }) {
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure GitHub Profile
               </h1>
-              <img
-                onClick={onClose}
-                className="h-4 w-4 cursor-pointer"
-                src={CloseIcon}
-                alt=""
-              />
+              <button onClick={onClose} className=" cursor-pointer">
+                <RxCross2 size={24} />
+              </button>
             </div>
 
             <div>

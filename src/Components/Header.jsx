@@ -8,9 +8,9 @@ import ConfigureGitHubRepos from "./ConfigureGitHubRepos.jsx";
 import ConfigureDevToArticles from "./ConfigureDev.ToArticles.jsx";
 import ConfigureStackOverflowSummury from "./ConfigureStackOverflowSummury.jsx";
 import ConfigureHakerNewsActivity from "./ConfigureHakerNewsActivity.jsx";
-import { GethackerNews } from "../constant/apis.js";
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
 
-export default function Header() {
+export default function Header({ refreshWidget }) {
   const [isOpen, setIsOpen] = useState(false);
   const [githubOpen, setGithubOpen] = useState(false);
   const [githubReposOpen, setGithubReposOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <div className="cursor-pointer  bg-gray-100 flex justify-center text-sm font-medium  rounded-[10px] transition-all duration-200 hover:text-white  hover:bg-[#38B1A1] text-black items-center gap-2 w-25 h-10">
               <img className="h-3 w-3 " src={refreshIcon} alt="" />
-              <button>Refresh</button>
+              <button onClick={refreshWidget}>Refresh</button>
             </div>
 
             <div

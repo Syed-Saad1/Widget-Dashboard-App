@@ -2,11 +2,14 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { HackerNews } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
-import { GethackerNews } from "../constant/apis";
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
+import { RxCross2 } from "react-icons/rx";
+
 const initialValues = {
   username: "",
 };
 export default function ConfigureHakerNewsActivity({ onClose }) {
+  const { GethackerNews } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: HackerNews,
@@ -17,6 +20,7 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
       onClose();
     },
   });
+  console.log("VAL:", errors);
 
   return (
     <>
@@ -33,12 +37,9 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure HakerNews Activity
               </h1>
-              <img
-                onClick={onClose}
-                className="h-4 w-4 cursor-pointer"
-                src={CloseIcon}
-                alt=""
-              />
+              <button onClick={onClose} className=" cursor-pointer">
+                <RxCross2 size={24} />
+              </button>
             </div>
 
             <div>

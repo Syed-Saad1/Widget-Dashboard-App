@@ -6,7 +6,9 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import HeartIcon from "../assets/heart.png";
 import ClockIcon from "../assets/clock-three.png";
 import MessageIcon from "../assets/message-circle-refresh.png";
-export default function ({ data, onDelete }) {
+import { useWidgetContext } from "../hooks/usewidgetContext";
+export default function ({ data, index }) {
+  const { handleDelete } = useWidgetContext();
   return (
     <>
       <div className="mt-4 bg-black/40" />{" "}
@@ -28,7 +30,7 @@ export default function ({ data, onDelete }) {
               <CiSettings />
             </p>
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(index)}
               className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
             >
               <RiDeleteBinLine className="h-4.5" />

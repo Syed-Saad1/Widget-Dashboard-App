@@ -2,16 +2,18 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { StackOverFlow } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
-import { GetstackFlow } from "../constant/apis";
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
+import { RxCross2 } from "react-icons/rx";
+
 const initialValues = {
   userID: "",
 };
 export default function ConfigureStackOverflowSummury({ onClose }) {
+  const { GetstackFlow } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: StackOverFlow,
     onSubmit: async (values, action) => {
-      console.log("VAL:", values);
       await GetstackFlow(values.userID);
       action.resetForm();
       onClose();
@@ -34,12 +36,9 @@ export default function ConfigureStackOverflowSummury({ onClose }) {
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure StackOverflow Summury
               </h1>
-              <img
-                onClick={onClose}
-                className="h-4 w-4 cursor-pointer"
-                src={CloseIcon}
-                alt=""
-              />
+              <button onClick={onClose} className=" cursor-pointer">
+                <RxCross2 size={24} />
+              </button>
             </div>
 
             <div>

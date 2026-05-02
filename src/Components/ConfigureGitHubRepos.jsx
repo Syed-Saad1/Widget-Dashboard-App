@@ -3,22 +3,22 @@ import CloseIcon from "../assets/close.png";
 import UsernameDropdown from "./DropDownInput";
 import { useFormik } from "formik";
 import { GitRepoSchema } from "../yupSchema/FormValidation";
-import { GetgithubRepos } from "../constant/apis";
+import { RxCross2 } from "react-icons/rx";
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
 const initialValues = {
   username: "",
 };
 export default function ConfigureGitHubRepos({ onClose }) {
+  const { GetgithubRepos } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: GitRepoSchema,
     onSubmit: async (values, action) => {
-      console.log("VAL:", values);
       await GetgithubRepos(values.username);
       action.resetForm();
       onClose();
     },
   });
-  console.log("Val", errors);
 
   return (
     <>
@@ -35,12 +35,9 @@ export default function ConfigureGitHubRepos({ onClose }) {
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure GitHub Repos
               </h1>
-              <img
-                onClick={onClose}
-                className="h-4 w-4 cursor-pointer"
-                src={CloseIcon}
-                alt=""
-              />
+              <button onClick={onClose} className=" cursor-pointer">
+                <RxCross2 size={24} />
+              </button>
             </div>
 
             <div>

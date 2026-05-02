@@ -14,13 +14,14 @@ import StackflowCard from "./Components/StackflowCard.jsx";
 import HackerNewsCard from "./Components/HackerNewsCard.jsx";
 import { handleDelete, STORAGE_KEY } from "./constant/apis.js";
 import WidgetIcon from "./assets/Widget-icon.png";
+import { WidgetContextProvider } from "./context/WidgetContextProvider.jsx";
+import { useWidgetContext } from "./hooks/usewidgetContext.js";
 
 function App() {
+  const { refreshWidget } = useWidgetContext();
   const widgets = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
   const isEmpty = widgets.length === 0;
-
-  console.log("widgets:", widgets);
 
   const onDelete = (index) => {
     handleDelete(index);
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header refreshWidget={refreshWidget} />
 
       {isEmpty ? (
         <div className="h-[calc(100vh-64px)] bg-gray-50 flex flex-col justify-center items-center gap-2">
@@ -56,7 +57,7 @@ function App() {
                   <GithubProfileCard
                     key={item.id}
                     data={item.data}
-                    onDelete={() => onDelete(index)}
+                    index={index}
                   />
                 );
 
@@ -65,7 +66,7 @@ function App() {
                   <GithubRepoesCard
                     key={item.id}
                     data={item.data}
-                    onDelete={() => onDelete(index)}
+                    index={index}
                   />
                 );
 
@@ -74,17 +75,13 @@ function App() {
                   <DevtoArticlesCard
                     key={item.id}
                     data={item.data}
-                    onDelete={() => onDelete(index)}
+                    index={index}
                   />
                 );
 
               case "stackoverflowsummary":
                 return (
-                  <StackflowCard
-                    key={item.id}
-                    data={item.data}
-                    onDelete={() => onDelete(index)}
-                  />
+                  <StackflowCard key={item.id} data={item.data} index={index} />
                 );
 
               case "hackernews":
@@ -92,7 +89,7 @@ function App() {
                   <HackerNewsCard
                     key={item.id}
                     data={item.data}
-                    onDelete={() => onDelete(index)}
+                    index={index}
                   />
                 );
 

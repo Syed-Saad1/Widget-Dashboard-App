@@ -2,23 +2,24 @@ import React from "react";
 import CloseIcon from "../assets/close.png";
 import { DevToSchema } from "../yupSchema/FormValidation";
 import { useFormik } from "formik";
-import { GetdevTo } from "../constant/apis";
+import { useWidgetContext } from "../hooks/usewidgetContext.js";
+import { RxCross2 } from "react-icons/rx";
+
 const initialValues = {
   username: "",
 };
 export default function ConfigureDevToArticles({ onClose }) {
+  const { GetdevTo } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: DevToSchema,
     onSubmit: async (values, action) => {
-      console.log("VAL:", values);
       await GetdevTo(values.username);
       action.resetForm();
       onClose();
     },
   });
 
-  console.log("VAL:", errors);
   return (
     <>
       <div
@@ -28,18 +29,15 @@ export default function ConfigureDevToArticles({ onClose }) {
         <form onSubmit={handleSubmit}>
           <div
             onClick={(e) => e.stopPropagation()}
-            className="h-auto w-130 bg-[#ffffff] shadow-2xl rounded-3xl px-6 py-6"
+            className="h-auto w-130 bg-gray-100 shadow-2xl rounded-3xl px-6 py-6"
           >
             <div className="flex justify-between items-center ">
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure Dev.To Articles
               </h1>
-              <img
-                onClick={onClose}
-                className="h-4 w-4 cursor-pointer"
-                src={CloseIcon}
-                alt=""
-              />
+              <button onClick={onClose} className=" cursor-pointer">
+                <RxCross2 size={24} />
+              </button>
             </div>
 
             <div>
