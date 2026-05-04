@@ -5,7 +5,10 @@ import { LuRefreshCw } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import MyPic from "../assets/Mypics.jpg";
 import WinIcon from "../assets/win.png";
-export default function ({ data, userID, onDelete }) {
+import { useWidgetContext } from "../hooks/usewidgetContext";
+export default function ({ data, userID, index }) {
+  const { handleDelete } = useWidgetContext();
+
   const stack = data?.items?.[0];
   {
     (" ");
@@ -14,10 +17,10 @@ export default function ({ data, userID, onDelete }) {
   return (
     <>
       <div className="mt-4  bg-black/40 " />
-      <div className="h-auto w-137.5 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4 pb-4">
+      <div className="h-fit w-137.5 bg-[#ffffff] rounded-3xl py-2 px-4 ">
         <div className="flex justify-between items-center px-4 py-2">
           <div>
-            <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
+            <h2 className=" flex text-[12px] text-[#38B1A1]">
               STACKOVERFLOW
               <span className="px-1.5">.</span>
               <p className="text-[14px] font-semibold text-black font-[Inter,Poppins,sans-serif]">
@@ -33,7 +36,7 @@ export default function ({ data, userID, onDelete }) {
               <CiSettings />
             </p>
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(index)}
               className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
             >
               <RiDeleteBinLine className="h-4.5" />
@@ -60,21 +63,19 @@ export default function ({ data, userID, onDelete }) {
           </div>
           <div className="mt-6 px-3 flex gap-26">
             <div>
-              <p className="text-[24px] font-[JetBrains Mono, monospace]"></p>
+              <p className="text-[24px] font-jet-brain"></p>
               <p className="text-[#cacaca] text-[14px] font-[Inter,Poppins,sans-serif]">
                 Answers
               </p>
             </div>
             <div>
-              <p className="text-[24px] font-[JetBrains Mono, monospace]"></p>
+              <p className="text-[24px] font-jet-brain"></p>
               <p className="text-[#cacaca] text-[14px] font-[Inter,Poppins,sans-serif]">
                 Questions
               </p>
             </div>
             <div>
-              <p className="text-[24px] font-[JetBrains Mono, monospace]">
-                {stack?.reputation}
-              </p>
+              <p className="text-[24px] font-jet-brain">{stack?.reputation}</p>
               <p className="text-[#cacaca] text-[12px] font-[Inter,Poppins,sans-serif]">
                 REP
               </p>
@@ -85,7 +86,7 @@ export default function ({ data, userID, onDelete }) {
               <img src={WinIcon} alt="" />
               <div className="flex gap-1">
                 {" "}
-                <span className="text-[#FBD014] font-bold font-[JetBrains Mono,monospace] text-[14px]">
+                <span className="text-[#FBD014] font-bold  text-[14px]">
                   .{stack?.badge_counts?.gold}
                 </span>
                 <span className="text-[#AF99A1] font-bold font-[JetBrains Mono,monospace] text-[14px]">

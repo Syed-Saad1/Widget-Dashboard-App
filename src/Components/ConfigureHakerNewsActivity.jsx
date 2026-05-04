@@ -9,35 +9,38 @@ const initialValues = {
   username: "",
 };
 export default function ConfigureHakerNewsActivity({ onClose }) {
-  const { GethackerNews } = useWidgetContext();
+  const { GethackerNews, isLoading } = useWidgetContext();
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues,
     validationSchema: HackerNews,
     onSubmit: async (values, action) => {
-      console.log("VAL:", values);
-      await GethackerNews(values?.username);
+      await GethackerNews(values.username);
       action.resetForm();
-      onClose();
+      setTimeout(() => {
+        onClose();
+      }, 0);
     },
   });
-  console.log("VAL:", errors);
-
   return (
     <>
       <div
         onClick={onClose}
         className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/40 "
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div
             onClick={(e) => e.stopPropagation()}
-            className="h-auto w-130 bg-[#ffffff] shadow-2xl rounded-3xl px-6 py-6"
+            className="h-auto w-130 bg-gray-100 shadow-2xl rounded-xl px-6 py-6"
           >
             <div className="flex justify-between items-center ">
               <h1 className="text-[19px] font-[Inter,Poppins,sans-serif] font-medium text-[#000000]">
                 Configure HakerNews Activity
               </h1>
-              <button onClick={onClose} className=" cursor-pointer">
+              <button
+                onClick={onClose}
+                type="button"
+                className=" cursor-pointer"
+              >
                 <RxCross2 size={24} />
               </button>
             </div>
@@ -77,7 +80,7 @@ export default function ConfigureHakerNewsActivity({ onClose }) {
               type="submit"
               className="w-118 h-10.5 bg-[#38B1A1] rounded-2xl mt-6 text-center text-[16px] font-[Inter,Poppins,sans-serif] text-[#ffffff] cursor-pointer"
             >
-              Save
+              {isLoading ? "Saving..." : "Save"}
             </button>
           </div>
         </form>

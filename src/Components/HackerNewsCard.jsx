@@ -4,12 +4,15 @@ import { LuRefreshCw } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Message from "../assets/message.png";
 import { FaRegMessage } from "react-icons/fa6";
+import { useWidgetContext } from "../hooks/usewidgetContext";
 
-export default function ({ data = {}, onDelete }) {
+export default function ({ data = {}, index }) {
+  const { handleDelete } = useWidgetContext();
+
   return (
     <>
       <div className="mt-4  bg-black/40" />
-      <div className="h-fit w-121 bg-[#ffffff] mx-4 my-10 rounded-3xl px-4 ">
+      <div className="h-fit w-121 bg-[#ffffff] rounded-3xl px-4 ">
         <div className="flex justify-between items-center px-4 py-2">
           <div>
             <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
@@ -28,7 +31,7 @@ export default function ({ data = {}, onDelete }) {
               <CiSettings />
             </p>
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(index)}
               className="text-[20px] hover:bg-[#47dbc8] p-1 rounded-md"
             >
               <RiDeleteBinLine className="h-4.5" />

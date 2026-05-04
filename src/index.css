@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
 :root {
   font-family: "Inter", "Poppins", sans-serif;
+}
+@theme {
+  --font-jet-brain: "JetBrains Mono", monospace;
 }

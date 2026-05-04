@@ -12,7 +12,7 @@ export default function ({ data, index }) {
   return (
     <>
       <div className="mt-4 bg-black/40" />{" "}
-      <div className="h-auto w-125 bg-[#ffffff]  mx-4 my-10 rounded-3xl px-4 pb-4">
+      <div className="h-auto w-125 bg-[#ffffff] rounded-3xl px-4">
         <div className="flex justify-between items-center px-4 py-2">
           <div>
             <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">

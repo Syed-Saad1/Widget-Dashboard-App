@@ -17,6 +17,7 @@ export const WidgetContextProvider = ({ children }) => {
   const [widgets, setWidgets] = useState(null);
   const [modalView, setModalView] = useState(false);
   const [widgetVersion, setWidgetVersion] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isGithubProfile = modalView === ModalView.github;
   const isGithubRepo = modalView === ModalView.githubRepo;
@@ -25,17 +26,23 @@ export const WidgetContextProvider = ({ children }) => {
   const ishacker = modalView === ModalView.hackerNews;
 
   const Widget = useMemo(() => {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return JSON.parse(data ?? []);
+    const safeParse = (value) => {
+      try {
+        return JSON.parse(value ?? "[]");
+      } catch {
+        return [];
+      }
+    };
   }, [widgetVersion]);
 
   const refreshWidget = () => {
     const data = localStorage.getItem(STORAGE_KEY);
-    setWidgets(JSON.parse(data ?? []));
+    setWidgets(safeParse(data));
   };
 
   const getGithubProfile = async (username) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://api.github.com/users/${username}`,
       );
@@ -53,11 +60,13 @@ export const WidgetContextProvider = ({ children }) => {
       console.error("GitHub Profile Fetch Error:", error);
     } finally {
       setWidgetVersion((prev) => prev + 1);
+      setIsLoading(false);
     }
   };
 
   const GetgithubRepos = async (username) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://api.github.com/users/${username}/repos`,
       );
@@ -76,12 +85,15 @@ export const WidgetContextProvider = ({ children }) => {
     } catch (error) {
       console.error("GitHub Repos Fetch Error:", error);
     } finally {
+      setIsLoading(false);
+
       setWidgetVersion((prev) => prev + 1);
     }
   };
 
   const GetdevTo = async (username) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://dev.to/api/articles?username=${username}`,
       );
@@ -100,12 +112,14 @@ export const WidgetContextProvider = ({ children }) => {
     } catch (error) {
       console.error("Dev.To Articles Fetch Error:", error);
     } finally {
+      setIsLoading(false);
       setWidgetVersion((prev) => prev + 1);
     }
   };
 
   const GetstackFlow = async (userID) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://api.stackexchange.com/2.3/users/${userID}?site=stackoverflow`,
       );
@@ -122,12 +136,14 @@ export const WidgetContextProvider = ({ children }) => {
     } catch (error) {
       console.error("StackOverflow Summary Fetch Error:", error);
     } finally {
+      setIsLoading(false);
       setWidgetVersion((prev) => prev + 1);
     }
   };
 
   const GethackerNews = async (username) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://hacker-news.firebaseio.com/v0/user/${username}.json`,
       );
@@ -170,6 +186,7 @@ export const WidgetContextProvider = ({ children }) => {
       console.error("HackerNews Fetch Error:", error);
       return null;
     } finally {
+      setIsLoading(false);
       setWidgetVersion((prev) => prev + 1);
     }
   };
@@ -182,16 +199,16 @@ export const WidgetContextProvider = ({ children }) => {
   };
 
   const onOpenGithubRepo = () => {
-    setModalView(modalView.githubRepo);
+    setModalView(ModalView.githubRepo);
   };
   const onOpendevTo = () => {
-    setModalView(modalView.devTo);
+    setModalView(ModalView.devTo);
   };
   const onOpenStackflow = () => {
-    setModalView(modalView.stackflow);
+    setModalView(ModalView.stackflow);
   };
   const onOpenhackerNews = () => {
-    setModalView(modalView.hackerNews);
+    setModalView(ModalView.hackerNews);
   };
 
   const handleDelete = (index) => {
@@ -215,6 +232,7 @@ export const WidgetContextProvider = ({ children }) => {
     GethackerNews,
     refreshWidget,
     handleDelete,
+    isLoading,
   };
 
   return (

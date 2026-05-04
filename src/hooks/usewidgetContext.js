@@ -22,6 +22,7 @@ export const useWidgetContext = () => {
     GethackerNews,
     refreshWidget,
     handleDelete,
+    isLoading,
   } = context;
   return {
     onOpenWidget,
@@ -37,5 +38,6 @@ export const useWidgetContext = () => {
     GethackerNews,
     refreshWidget,
     handleDelete,
+    isLoading,
   };
 };

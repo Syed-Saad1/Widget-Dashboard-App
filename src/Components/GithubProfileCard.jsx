@@ -9,13 +9,13 @@ export default function ({ data, index }) {
   const { handleDelete } = useWidgetContext();
   return (
     <>
-      <div className="  bg-black/40 " />
-      <div className="h-55.75 w-107.25 bg-[#ffffff]  rounded-3xl px-4">
+      <div className=" mt-4 bg-black/40 " />
+      <div className="h-55.75 w-107.25 bg-[#ffffff] rounded-3xl px-4">
         <div className="flex justify-between items-center px-4 py-2">
           <div>
             <h2 className=" flex font-[Inter,Poppins,sans-serif] text-[12px] text-[#38B1A1]">
               GITHUB <span className="px-1.5">.</span>
-              <p className="text-[14px] font-semibold text-black font-[Inter,Poppins,sans-serif]">
+              <p className="text-[14px] font-semibold text-black ">
                 GitHub Profile
               </p>
             </h2>
@@ -48,7 +48,7 @@ export default function ({ data, index }) {
         </div>
         <div className="flex gap-6 mt-5">
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
+            <p className="font-jet-brain text-[24px] font-semibold">
               {data?.public_repos}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
@@ -56,7 +56,7 @@ export default function ({ data, index }) {
             </p>
           </div>
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
+            <p className="font-jet-brain text-[24px] font-semibold">
               {data?.followers}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">
@@ -64,7 +64,7 @@ export default function ({ data, index }) {
             </p>
           </div>
           <div>
-            <p className="font-[JetBrains Mono,monospace] text-[24px] font-semibold">
+            <p className="font-jet-brain text-[24px] font-semibold">
               {data?.following}
             </p>
             <p className="text-[#AF99A1] text-[12px] font-[Inter,Poppins,sans-serif]">

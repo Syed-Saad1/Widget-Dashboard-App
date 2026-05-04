@@ -16,12 +16,14 @@ export default function Modal({
         onClick={onClose}
         className="fixed top-0 inset-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/40"
       >
-        <div className="h-116 w-110.25 bg-gray-100 shadow-2xl rounded-2xl px-2 py-2">
+        <div className="h-116 w-110.25 bg-gray-100 shadow-2xl rounded-2xl p-4">
           <div
             onClick={(e) => e.stopPropagation()}
             className="flex justify-between items-center m-2"
           >
-            <h1 className="text-[20px] font-medium text-black">Add Widget</h1>
+            <h1 className="text-[18px] font-medium text-[#000000]">
+              Add Widget
+            </h1>
             <button onClick={onClose} className=" cursor-pointer">
               <RxCross2 size={24} />
             </button>
@@ -36,10 +38,10 @@ export default function Modal({
               onClick={onGithub}
               className="h-16 w-102 max-w-md hover:bg-[#e6e3e3] rounded-lg mx-3 py-2 px-2 cursor-pointer"
             >
-              <h3 className="px-1 text-[13px] pt-1 font-[Inter,Poppins,sans-serif] text-black font-semibold hover:text-[#38b1a1]">
+              <h3 className="px-1 text-[13px] pt-1 text-black font-medium hover:text-[#38b1a1]">
                 Github Profile
               </h3>
-              <p className="px-1 pb-1 text-[12px] font-[Inter,Poppins,sans-serif] text-[#AF99A1]">
+              <p className="px-1 pb-1 text-[12px] text-[#AF99A1]">
                 User Stats:repos, followers,gists
               </p>
             </div>
@@ -48,17 +50,17 @@ export default function Modal({
               onClick={onGithubRepos}
               className="h-16 w-102 hover:bg-[#e6e3e3] rounded-lg mx-3 py-2 px-2 cursor-pointer"
             >
-              <h3 className="px-1 text-[13px] font-[Inter,Poppins,sans-serif]  text-black font-semibold hover:text-[#38b1a1]">
+              <h3 className="px-1 text-[13px] text-black font-medium hover:text-[#38b1a1]">
                 Github Repos
               </h3>
-              <p className="px-1 pb-1 text-[12px] font-[Inter,Poppins,sans-serif] text-[#AF99A1]">
+              <p className="px-1 pb-1 text-[12px] font-medium text-[#AF99A1]">
                 Repository:List with stars and forks
               </p>
             </div>
           </div>
 
           <div>
-            <h2 className="px-2 text-[#38b1a1] font-[Inter,Poppins,sans-serif] text-[13px] font-bold">
+            <h2 className="px-2 text-[#38b1a1] text-[13px] font-bold">
               DEV.TO
             </h2>
 
@@ -66,17 +68,17 @@ export default function Modal({
               onClick={onDevArticles}
               className="h-16 w-102 hover:bg-[#e6e3e3] rounded-lg mx-3 py-2 px-2 cursor-pointer"
             >
-              <h3 className="pt-1 px-1 text-[13px] font-[Inter,Poppins,sans-serif] text-black font-semibold hover:text-[#38b1a1]">
+              <h3 className="pt-1 px-1 text-[13px] text-black font-medium hover:text-[#38b1a1]">
                 Dev.To Articles
               </h3>
-              <p className="pb-2 px-1 text-[12px] font-[Inter,Poppins,sans-serif] text-[#AF99A1]">
+              <p className="pb-2 px-1 text-[12px] font-medium text-[#AF99A1]">
                 Latest articles with reaction and comments
               </p>
             </div>
           </div>
 
           <div>
-            <h2 className="px-2 text-[#38b1a1] font-[Inter,Poppins,sans-serif] text-[13px] font-bold">
+            <h2 className="px-2 text-[#38b1a1] text-[13px] font-bold">
               STACK OVERFLOW
             </h2>
 
@@ -84,17 +86,17 @@ export default function Modal({
               onClick={onStackFlow}
               className="h-16 w-102 hover:bg-[#e6e3e3] rounded-lg mx-3 py-2 px-2 cursor-pointer"
             >
-              <h3 className="pt-1 px-1 text-[13px] font-[Inter,Poppins,sans-serif] text-black font-semibold hover:text-[#38b1a1]">
+              <h3 className="pt-1 px-1 text-[13px]  text-black font-medium hover:text-[#38b1a1]">
                 StackOverflow Summary
               </h3>
-              <p className="pb-2 px-1 text-[12px] font-[Inter,Poppins,sans-serif] text-[#AF99A1]">
+              <p className="pb-2 px-1 text-[12px] font-medium text-[#AF99A1]">
                 User stats,reputation,and badges
               </p>
             </div>
           </div>
 
           <div>
-            <h2 className="px-2 text-[#38b1a1] font-[Inter,Poppins,sans-serif] text-[13px] font-bold">
+            <h2 className="px-2 text-[#38b1a1] text-[13px] font-bold">
               HACKER NEWS
             </h2>
 
@@ -102,10 +104,10 @@ export default function Modal({
               onClick={onHackerNews}
               className="h-16 w-102 hover:bg-[#e6e3e3] rounded-lg mx-3 py-2 px-2 cursor-pointer"
             >
-              <h3 className="px-1 pt-1 text-[13px] font-[Inter,Poppins,sans-serif] text-black font-semibold hover:text-[#38b1a1]">
+              <h3 className="px-1 pt-1 text-[13px] text-black font-medium hover:text-[#38b1a1]">
                 Hacker News Activity
               </h3>
-              <p className="pb-2 px-1 text-[12px] font-[Inter,Poppins,sans-serif] text-[#AF99A1]">
+              <p className="pb-2 px-1 text-[12px] font-medium text-[#AF99A1]">
                 Recent submission and karma
               </p>
             </div>
